@@ -1,0 +1,159 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <ItemGroup>
+    <Filter Include="Source Files">
+      <UniqueIdentifier>{4FC737F1-C7A5-4376-A066-2A32D752A2FF}</UniqueIdentifier>
+      <Extensions>cpp;c;cc;cxx;def;odl;idl;hpj;bat;asm;asmx</Extensions>
+    </Filter>
+    <Filter Include="Header Files">
+      <UniqueIdentifier>{93995380-89BD-4b04-88EB-625FBE52EBFB}</UniqueIdentifier>
+      <Extensions>h;hh;hpp;hxx;hm;inl;inc;xsd</Extensions>
+    </Filter>
+    <Filter Include="Resource Files">
+      <UniqueIdentifier>{67DA6AB6-F800-4c08-8B7A-83BB121AAD01}</UniqueIdentifier>
+      <Extensions>rc;ico;cur;bmp;dlg;rc2;rct;bin;rgs;gif;jpg;jpeg;jpe;resx;tiff;tif;png;wav;mfcribbon-ms</Extensions>
+    </Filter>
+    <Filter Include="Header Files\AimpApi">
+      <UniqueIdentifier>{5708907b-e040-4abe-9faf-02596bbe5c3b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Helpers">
+      <UniqueIdentifier>{6fcbf8a7-da58-4608-b377-ebc5bdc6d3f4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{7012069b-5399-452d-969e-93e4f16e7f65}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Core\Actions">
+      <UniqueIdentifier>{e009fdf2-6c8d-4931-8fd5-2926d316bcd9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Helpers">
+      <UniqueIdentifier>{8f5c81c2-a189-45bb-9678-8e1824195c1a}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{8a62c775-50e7-4b2e-9473-299fe1d6f3e4}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core\Actions">
+      <UniqueIdentifier>{4530f866-3666-4f6e-9606-9b8591ca8869}</UniqueIdentifier>
+    </Filter>
+  </ItemGroup>
+  <ItemGroup>
+    <ClInclude Include="resource.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="targetver.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiActions.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiAlbumArt.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiCore.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiDecoders.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiFileManager.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiInternet.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiMenu.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiMessages.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiMUI.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiObjects.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiOptions.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiPlayer.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiPlaylists.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiPlugin.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiRemote.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiScheduler.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiSkins.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiTagEditor.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiThreading.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="AimpApi\apiVisuals.h">
+      <Filter>Header Files\AimpApi</Filter>
+    </ClInclude>
+    <ClInclude Include="Helpers\IUnknownImpl.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="stdafx.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\ApiTestPlugin.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\PluginManager.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Actions\MenuItemEvent.h">
+      <Filter>Header Files\Core\Actions</Filter>
+    </ClInclude>
+  </ItemGroup>
+  <ItemGroup>
+    <ClCompile Include="AssemblyInfo.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="stdafx.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\ApiTestPlugin.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\PluginManager.cpp">
+      <Filter>Source Files\Core</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Actions\MenuItemEvent.cpp">
+      <Filter>Source Files\Core\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="DllMmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="ReadMe.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ResourceCompile Include="app.rc">
+      <Filter>Resource Files</Filter>
+    </ResourceCompile>
+  </ItemGroup>
+  <ItemGroup>
+    <Image Include="app.ico">
+      <Filter>Resource Files</Filter>
+    </Image>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="exports.def">
+      <Filter>Source Files</Filter>
+    </None>
+  </ItemGroup>
+</Project>

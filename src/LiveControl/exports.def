@@ -1,0 +1,4 @@
+LIBRARY "AIMP.LiveControl"
+
+EXPORTS
+  AIMPPluginGetHeader;
