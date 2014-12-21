@@ -1,7 +1,13 @@
+/*************************************************************************
+*   File        : PluginManager.h
+*   Autor       : Vyacheslav Lisnevskyi
+*   Created     : 15/12/2014
+*   Description : Plugin manager.
+*************************************************************************/
 #pragma once
 #include "..\stdafx.h"
-//#include <vcclr.h>
 
+#include "..\AimpApi\apiPlugin.h"
 #include "ApiTestPlugin.h"
 
 namespace LiVEZer {
@@ -12,16 +18,18 @@ namespace LiVEZer {
                 using namespace System::Reflection;
 
                 /*Plugin Manager*/
-                public ref class PluginManager : public System::MarshalByRefObject
+                private ref class PluginManager : public MarshalByRefObject
                 {
                     private:
                     PluginManager();
 
-                    bool isDisposed = false;
                     static Object^ lockInstance = gcnew Object();
                     static PluginManager^ instance;
 
+                    bool isDisposed = false;
                     ApiTestPlugin* aimpPlugin = nullptr;
+
+                    HMODULE pluginInstance;
 
                     Assembly^ MyResolveEventHandler(Object^ sender, ResolveEventArgs^ args);
                     void OnUnhandledException(System::Object ^sender, System::UnhandledExceptionEventArgs ^e);
@@ -36,11 +44,9 @@ namespace LiVEZer {
                         PluginManager^ get();
                     }
 
-                    void SetAimpPlugin(ApiTestPlugin *aimpPlugin);
+                    IAIMPPlugin* GetAimpPlugin();
 
-                    ApiTestPlugin GetAimpPlugin();
-
-                    void Initialize();
+                    void Initialize(HMODULE pluginInstance);
                 };
             }
         }

@@ -1,5 +1,10 @@
+/*************************************************************************
+*   File        : PluginManager.cpp
+*   Autor       : Vyacheslav Lisnevskyi
+*   Created     : 15/12/2014
+*   Description : Contains implementation of class PluginManager.
+*************************************************************************/
 #include "..\stdafx.h"
-
 #include "PluginManager.h"
 
 namespace LiVEZer {
@@ -22,7 +27,7 @@ namespace LiVEZer {
 
                 PluginManager::~PluginManager()
                 {
-                    if (isDisposed)
+                    /*if (isDisposed)
                     {
                         return;
                     }
@@ -33,12 +38,12 @@ namespace LiVEZer {
                         -= gcnew UnhandledExceptionEventHandler(this, &PluginManager::OnUnhandledException);
 
                     instance = nullptr;
-                    isDisposed = true;
+                    isDisposed = true;*/
                 }
 
-                void PluginManager::Initialize()
+                void PluginManager::Initialize(HMODULE pluginInstance)
                 {
-
+                    this->pluginInstance = pluginInstance;
                 }
 
                 Assembly^ PluginManager::MyResolveEventHandler(Object^ sender, ResolveEventArgs^ args)
@@ -61,7 +66,7 @@ namespace LiVEZer {
                     }
                 }
 
-                void PluginManager::OnUnhandledException(Object ^sender, UnhandledExceptionEventArgs ^e)
+                void PluginManager::OnUnhandledException(Object^ sender, UnhandledExceptionEventArgs^ e)
                 {
                     //:TODO Handle unhandeled exceptions
                     throw gcnew System::NotImplementedException();
@@ -88,17 +93,25 @@ namespace LiVEZer {
                     return instance;
                 }
 
-                ApiTestPlugin PluginManager::GetAimpPlugin()
+                IAIMPPlugin* PluginManager::GetAimpPlugin()
                 {
-                    return *aimpPlugin;
-                }
-
-                void PluginManager::SetAimpPlugin(ApiTestPlugin *aimpPlugin)
-                {
-                    if (nullptr != aimpPlugin && aimpPlugin != aimpPlugin)
+                    if (nullptr == aimpPlugin)
                     {
-                        this->aimpPlugin = aimpPlugin;
+                        Monitor::Enter(this);
+                        try
+                        {
+                            if (nullptr == aimpPlugin)
+                            {
+                                aimpPlugin = new ApiTestPlugin(pluginInstance);
+                            }
+                        }
+                        finally
+                        {
+                            Monitor::Exit(this);
+                        }
                     }
+
+                    return aimpPlugin;
                 }
             }
         }

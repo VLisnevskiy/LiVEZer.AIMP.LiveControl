@@ -1,3 +1,9 @@
+/*************************************************************************
+*   File        : MenuItemEvent.h
+*   Autor       : Vyacheslav Lisnevskyi
+*   Created     : 15/12/2014
+*   Description :
+*************************************************************************/
 #pragma once
 #include "..\..\stdafx.h"
 
@@ -17,7 +23,7 @@ namespace LiVEZer {
                         public:
                         virtual void WINAPI OnExecute(IUnknown* data);
 
-                        virtual HRESULT WINAPI QueryInterface(REFIID iid, void** object)
+                        virtual HRESULT WINAPI QueryInterface(REFIID iid, void** object);/*
                         {
                             if (!SUCCEEDED(IUnknownImpl<IAIMPActionEvent>::QueryInterface(iid, object)))
                             {
@@ -40,7 +46,7 @@ namespace LiVEZer {
                             {
                                 return S_OK;
                             }
-                        }
+                        }*/
                     };
                 }
             }

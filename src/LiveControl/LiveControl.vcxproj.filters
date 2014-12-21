@@ -117,11 +117,17 @@
     <ClInclude Include="Core\Actions\MenuItemEvent.h">
       <Filter>Header Files\Core\Actions</Filter>
     </ClInclude>
+    <ClInclude Include="Helpers\PluginCreator.h">
+      <Filter>Header Files\Helpers</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Actions\AIMPActionEventWrapper.h">
+      <Filter>Header Files\Core\Actions</Filter>
+    </ClInclude>
+    <ClInclude Include="Core\Actions\AIMPActionEvent.h">
+      <Filter>Header Files\Core\Actions</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
-    <ClCompile Include="AssemblyInfo.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
     <ClCompile Include="stdafx.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -135,6 +141,18 @@
       <Filter>Source Files\Core\Actions</Filter>
     </ClCompile>
     <ClCompile Include="DllMmain.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="Helpers\PluginCreator.cpp">
+      <Filter>Source Files\Helpers</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Actions\AIMPActionEventWrapper.cpp">
+      <Filter>Source Files\Core\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="Core\Actions\AIMPActionEvent.cpp">
+      <Filter>Source Files\Core\Actions</Filter>
+    </ClCompile>
+    <ClCompile Include="AssemblyInfo.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
   </ItemGroup>

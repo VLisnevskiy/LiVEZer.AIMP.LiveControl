@@ -1,11 +1,19 @@
+/*************************************************************************
+*   File        : ApiTestPlugin.cpp
+*   Autor       : Vyacheslav Lisnevskyi
+*   Created     : 15/12/2014
+*   Description :
+*************************************************************************/
 #include "..\stdafx.h"
+#include "ApiTestPlugin.h"
 
 #include "..\AimpApi\apiMenu.h"
-
 #include "Actions\MenuItemEvent.h"
-
-#include "ApiTestPlugin.h"
+#include "Actions\AIMPActionEventWrapper.h"
+#include "Actions\AIMPActionEvent.h"
 #include "PluginManager.h"
+
+#include <vcclr.h>
 
 namespace LiVEZer {
     namespace AIMP {
@@ -17,10 +25,66 @@ namespace LiVEZer {
 
                 using namespace Actions;
 
+                public ref class MyActionEvent : AIMPActionEvent
+                {
+                    public:
+                    void HandleEvent(void* data) override
+                    {
+                        MessageBox::Show("Handeled", "AIMP Live Control", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+                    }
+                };
+
+                AIMPActionEventWrapper* FindAction()
+                {
+                    AIMPActionEventWrapper* ff = (gcnew MyActionEvent())->GetAIMPActionEventWrapper();
+
+                    array<System::String^>^ files = System::IO::Directory::GetFiles(
+                        System::IO::Path::GetDirectoryName(Assembly::GetExecutingAssembly()->Location),
+                        "*.dll");
+                    System::Collections::IEnumerator^ myEnum = files->GetEnumerator();
+                    while (myEnum->MoveNext())
+                    {
+                        try
+                        {
+                            Assembly^ ass = Assembly::LoadFrom(myEnum->Current->ToString());
+                            System::Collections::Generic::IEnumerable<System::Reflection::TypeInfo^>^ coll = ass->DefinedTypes;
+                            ass->EntryPoint->Invoke(nullptr, nullptr);
+
+                            for each (System::Reflection::TypeInfo^ t in coll)
+                            {
+                                if (t->BaseType->Name == AIMPActionEvent::typeid->Name)
+                                {
+                                    Object^ cl = Activator::CreateInstance(t);
+                                    AIMPActionEvent^ ac = dynamic_cast<AIMPActionEvent^>(cl);
+                                    /*
+                                    I ^ i = safe_cast< I ^ >(c);   // is (maps to castclass in IL)
+                                    I ^ ii = dynamic_cast< I ^ >(c);   // as (maps to isinst in IL)
+                                    */
+                                    if (nullptr != ac)
+                                    {
+                                        ff = ac->GetAIMPActionEventWrapper();
+                                        break;
+                                    }
+                                }
+                            }
+                        }
+                        catch (...)
+                        {
+                        }
+                    }
+
+                    return ff;
+                }
+
+                void WINAPI SimpleHandler(IUnknown* data)
+                {
+                    MessageBox::Show("Hadler called", "AIMP Live Control", MessageBoxButtons::OK, MessageBoxIcon::Asterisk);
+                }
+
                 ApiTestPlugin::ApiTestPlugin(HMODULE PluginInstance)
                 {
                     pluginInstance = PluginInstance;
-                    PluginManager::Instance->SetAimpPlugin(this);
+                    //PluginManager::Instance->SetAimpPlugin(this);
                 }
 
                 ApiTestPlugin::~ApiTestPlugin()
@@ -30,14 +94,7 @@ namespace LiVEZer {
 
                 HRESULT WINAPI ApiTestPlugin::Initialize(IAIMPCore* core)
                 {
-#ifdef _DEBUG
-                    MessageBox::Show(
-                        "Entry point for DEBUGGING!\nWill be removed after release.",
-                        "AIMP Live Control",
-                        MessageBoxButtons::OK,
-                        MessageBoxIcon::Asterisk);
-#endif
-                    PluginManager::Instance->Initialize();
+                    //PluginManager::Instance->Initialize(nullptr);
                     aimpCore = core;
                     aimpCore->AddRef();
 
@@ -55,7 +112,13 @@ namespace LiVEZer {
                                     auto menuId = MakeString(L"{db2dcb278-274a-4055-9bc2-01f89558b567}");
                                     auto menuName = MakeString(L"Item");
 
-                                    IUnknown* itemEvent = new MenuItemEvent();
+                                    //IUnknown* itemEvent = new MenuItemEvent();
+                                    //AIMPActionEventWrapper* itemEvent = new AIMPActionEventWrapper();
+
+                                    /*AIMPActionEvent^ actioEvent = gcnew MyActionEvent();
+                                    IUnknown* itemEvent = actioEvent->GetAIMPActionEventWrapper();*/
+                                    IUnknown* itemEvent = FindAction();
+                                    //itemEvent->SetEventHandler(&SimpleHandler);
                                     itemEvent->AddRef();
 
                                     menuItem->SetValueAsObject(AIMP_MENUITEM_PROPID_ID, menuId);
